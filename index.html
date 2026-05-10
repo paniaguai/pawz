@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PawVibesZ — Cats on Zoom</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #FF6B6B;
+    --yellow: #FFE66D;
+    --mint: #4ECDC4;
+    --lavender: #C9B8FF;
+    --peach: #FFB347;
+    --sky: #74C7EC;
+    --cream: #FFF9F0;
+    --dark: #2D2D2D;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFB347 40%, #FFE66D 100%);
+    padding: 60px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 300px; height: 300px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -40px;
+    width: 400px; height: 400px;
+    background: rgba(255,255,255,0.10);
+    border-radius: 50%;
+  }
+
+  .hero-paws {
+    font-size: 3rem;
+    letter-spacing: 8px;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .hero h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(3rem, 10vw, 6rem);
+    color: var(--white);
+    text-shadow: 4px 4px 0 rgba(0,0,0,0.12);
+    line-height: 1;
+    margin: 10px 0 6px;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--white);
+    font-weight: 700;
+    opacity: 0.92;
+    margin-bottom: 10px;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 540px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+
+  .btn-book {
+    display: inline-block;
+    background: var(--dark);
+    color: var(--yellow);
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    padding: 18px 48px;
+    border-radius: 60px;
+    text-decoration: none;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.25);
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-book:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 0 rgba(0,0,0,0.25);
+  }
+  .btn-book:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 0 rgba(0,0,0,0.25);
+  }
+
+  .price-badge {
+    display: inline-block;
+    background: var(--white);
+    color: var(--coral);
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-top: 14px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  }
+
+  /* ── WAVE ── */
+  .wave {
+    display: block;
+    width: 100%;
+    height: 60px;
+    margin-top: -2px;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .section {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--dark);
+  }
+
+  .section-title span {
+    display: inline-block;
+    background: var(--yellow);
+    padding: 2px 16px;
+    border-radius: 8px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+  }
+
+  .step {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    border: 3px solid transparent;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .step:hover { transform: translateY(-5px); }
+  .step:nth-child(1) { border-color: var(--coral); }
+  .step:nth-child(2) { border-color: var(--mint); }
+  .step:nth-child(3) { border-color: var(--lavender); }
+  .step:nth-child(4) { border-color: var(--peach); }
+
+  .step-icon { font-size: 2.8rem; margin-bottom: 12px; }
+  .step h3 { font-family: 'Fredoka One', cursive; font-size: 1.2rem; margin-bottom: 8px; }
+  .step p { font-size: 0.9rem; color: #666; line-height: 1.5; }
+
+  /* ── STATS BAND ── */
+  .stats-band {
+    background: var(--dark);
+    color: var(--white);
+    padding: 40px 20px;
+  }
+  .stats-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem;
+    color: var(--yellow);
+    display: block;
+  }
+  .stat-label { font-size: 0.9rem; opacity: 0.75; }
+
+  /* ── CATS GRID ── */
+  .cats-section {
+    padding: 60px 20px;
+    background: linear-gradient(180deg, var(--cream) 0%, #FFF0E8 100%);
+  }
+
+  .cats-inner { max-width: 1100px; margin: 0 auto; }
+
+  .region-block { margin-bottom: 48px; }
+
+  .region-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .region-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, currentColor, transparent);
+    opacity: 0.2;
+  }
+
+  .cats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .cat-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 12px 18px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.18s, box-shadow 0.18s;
+    cursor: default;
+  }
+  .cat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+  .cat-card .cat-emoji { font-size: 1.3rem; }
+  .cat-card .cat-info { line-height: 1.3; }
+  .cat-card .cat-name { color: var(--dark); }
+  .cat-card .cat-place { font-weight: 400; font-size: 0.78rem; color: #888; }
+
+  /* Card color accents */
+  .cat-card:nth-child(4n+1) { border-left: 4px solid var(--coral); }
+  .cat-card:nth-child(4n+2) { border-left: 4px solid var(--mint); }
+  .cat-card:nth-child(4n+3) { border-left: 4px solid var(--lavender); }
+  .cat-card:nth-child(4n+4) { border-left: 4px solid var(--peach); }
+
+  /* ── CTA BOTTOM ── */
+  .cta-bottom {
+    background: linear-gradient(135deg, #4ECDC4, #74C7EC);
+    padding: 70px 20px;
+    text-align: center;
+  }
+  .cta-bottom h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    color: var(--white);
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    margin-bottom: 12px;
+  }
+  .cta-bottom p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+    font-weight: 600;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--yellow); text-decoration: none; }
+
+  /* ── SCROLLING MARQUEE ── */
+  .marquee-wrap {
+    background: var(--coral);
+    overflow: hidden;
+    padding: 12px 0;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-track span {
+    font-family: 'Fredoka One', cursive;
+    color: var(--white);
+    font-size: 1.1rem;
+    margin: 0 28px;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-paws">🐾 🐾 🐾</div>
+  <h1>PawVibesZ</h1>
+  <p class="hero-tagline">The World's First Zoom Cat Therapy Platform</p>
+  <p class="hero-sub">Meet a real cat and its human host for a few minutes of mindful presence. No awkward small talk — just purring, calm breathing, and genuine connection.</p>
+  <a href="https://buy.stripe.com/cNi6oGfqL4SHdrg7w40Jq04" target="_blank" class="btn-book">🐱 Book a Session Now</a><br>
+  <span class="price-badge">Only €8 per session · €80 group</span>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFF9F0"/>
+</svg>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>😻 Virtual Cat Therapy</span><span>🧘 Mindful Presence</span><span>🐱 70+ Cats Worldwide</span><span>😸 Real. Unscripted. Purring.</span><span>🌍 20+ Countries</span><span>💆 Emotional Reset</span><span>🐾 Founded in Madrid</span><span>✨ One Click to Calm</span>
+    <span>😻 Virtual Cat Therapy</span><span>🧘 Mindful Presence</span><span>🐱 70+ Cats Worldwide</span><span>😸 Real. Unscripted. Purring.</span><span>🌍 20+ Countries</span><span>💆 Emotional Reset</span><span>🐾 Founded in Madrid</span><span>✨ One Click to Calm</span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <h2 class="section-title"><span>How It Works</span></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-icon">🐱</div>
+      <h3>Pick a Cat</h3>
+      <p>Browse our roster of 70+ real cats across 20+ countries and choose your favourites.</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">💳</div>
+      <h3>Book & Pay</h3>
+      <p>One click checkout — just €8 for a solo session or €80 for a group. Secure Stripe payment.</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">📅</div>
+      <h3>Schedule</h3>
+      <p>Fill in the booking form with your chosen cat and preferred date & time.</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">😌</div>
+      <h3>Breathe & Reset</h3>
+      <p>Join on Zoom and let the purring do its magic. Calm, grounded, reconnected.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-num">70+</span><span class="stat-label">Real Cats</span></div>
+    <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Host Specialists</span></div>
+    <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Countries</span></div>
+    <div class="stat"><span class="stat-num">€8</span><span class="stat-label">Per Session</span></div>
+  </div>
+</div>
+
+<!-- CATS GRID -->
+<section class="cats-section">
+  <div class="cats-inner">
+    <h2 class="section-title" style="text-align:center;margin-bottom:48px"><span>Meet the Cats 🐾</span></h2>
+
+    <!-- Africa -->
+    <div class="region-block">
+      <div class="region-title" style="color:#FF6B6B">🌍 Africa <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Kammy, Honey & Luna</div><div class="cat-place">Johannesburg, South Africa</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Theresa & Molly</div><div class="cat-place">Johannesburg, South Africa</div></div></div>
+      </div>
+    </div>
+
+    <!-- Portugal -->
+    <div class="region-block">
+      <div class="region-title" style="color:#4ECDC4">🇵🇹 Portugal <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Kirana & Garfield</div><div class="cat-place">Portugal</div></div></div>
+      </div>
+    </div>
+
+    <!-- Canada -->
+    <div class="region-block">
+      <div class="region-title" style="color:#C9B8FF">🇨🇦 Canada <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Tracey & Kitty</div><div class="cat-place">Montréal</div></div></div>
+      </div>
+    </div>
+
+    <!-- USA -->
+    <div class="region-block">
+      <div class="region-title" style="color:#FFB347">🇺🇸 United States <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Cristina & Boobie</div><div class="cat-place">New Mexico</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Jasmin & Sir Fluffy</div><div class="cat-place">Texas</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Deven & Chino</div><div class="cat-place">Michigan</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Jasmine & Albert</div><div class="cat-place">Maryland</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Laird, Gino & Seacat</div><div class="cat-place">Chagrin Falls, Ohio</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Chasity, Athena, Aries & Luna</div><div class="cat-place">Louisiana</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">JayleAna & Evangeline</div><div class="cat-place">Tennessee</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Saddie, Goodwill & Butter</div><div class="cat-place">Denver, CO</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Mitch & Gittel</div><div class="cat-place">Washington D.C.</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Stefen & Bello</div><div class="cat-place">Philadelphia</div></div></div>
+      </div>
+    </div>
+
+    <!-- Central America -->
+    <div class="region-block">
+      <div class="region-title" style="color:#FF6B6B">🌎 Central America <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Sofía & Gordo</div><div class="cat-place">El Salvador</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Fiorella & Kevin</div><div class="cat-place">Costa Rica</div></div></div>
+      </div>
+    </div>
+
+    <!-- Philippines -->
+    <div class="region-block">
+      <div class="region-title" style="color:#4ECDC4">🇵🇭 Philippines <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Arianne & Lanter</div><div class="cat-place">Philippines</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Princess, Nami & Tito</div><div class="cat-place">Cavite</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Luna, Spanky & Cinnamon</div><div class="cat-place">Philippines</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">JD & Thomas</div><div class="cat-place">Philippines</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Dynne & Cloudy</div><div class="cat-place">Philippines</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Aimee & Smokey</div><div class="cat-place">Philippines</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Lou & Logan</div><div class="cat-place">Philippines</div></div></div>
+      </div>
+    </div>
+
+    <!-- Indonesia -->
+    <div class="region-block">
+      <div class="region-title" style="color:#C9B8FF">🇮🇩 Indonesia <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Dina, Himler & PonPon</div><div class="cat-place">Indonesia</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Cia & Abu</div><div class="cat-place">Jakarta</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Sekar & Miyu</div><div class="cat-place">Jakarta</div></div></div>
+      </div>
+    </div>
+
+    <!-- Asia -->
+    <div class="region-block">
+      <div class="region-title" style="color:#FFB347">🌏 East & Southeast Asia <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Pepe-san, Kotaro & Kojiro</div><div class="cat-place">Tokyo, Japan</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Melissa & Ava</div><div class="cat-place">Seoul, South Korea</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Sharifa & Chewy</div><div class="cat-place">Singapore</div></div></div>
+      </div>
+    </div>
+
+    <!-- UK & Ireland -->
+    <div class="region-block">
+      <div class="region-title" style="color:#FF6B6B">🇬🇧 UK & Ireland <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Annie & Jeeves on the Boat</div><div class="cat-place">London</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Lucy & Keeva</div><div class="cat-place">Cheshire</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Sara & Aysha</div><div class="cat-place">London</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Fátima & Maggie</div><div class="cat-place">Dublin, Ireland</div></div></div>
+      </div>
+    </div>
+
+    <!-- Germany -->
+    <div class="region-block">
+      <div class="region-title" style="color:#4ECDC4">🇩🇪 Germany <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Barbara, Pixel & Critic</div><div class="cat-place">Hamburg</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Stephanie & Barnabey</div><div class="cat-place">Munich</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Finola, Yoko & Ushy</div><div class="cat-place">Hamburg</div></div></div>
+      </div>
+    </div>
+
+    <!-- Other Europe -->
+    <div class="region-block">
+      <div class="region-title" style="color:#C9B8FF">🇪🇺 Europe <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Anastasia & Frankie</div><div class="cat-place">Italy</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Beatrice & Cesare</div><div class="cat-place">Zurich, Switzerland</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Ana & Lluna</div><div class="cat-place">Amsterdam, Netherlands</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Myrto & Sue</div><div class="cat-place">Greece</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Prana, Halloween & Luna</div><div class="cat-place">Cyprus</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Karolina, Mitti & Luna</div><div class="cat-place">Poland</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Gusté, Kosmosis & Principle</div><div class="cat-place">Lithuania</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Nez & Que</div><div class="cat-place">Baku, Azerbaijan</div></div></div>
+      </div>
+    </div>
+
+    <!-- Spain -->
+    <div class="region-block">
+      <div class="region-title" style="color:#FF6B6B">🇪🇸 Spain <div class="region-line"></div></div>
+      <div class="cats-grid">
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Silvia & Yumi</div><div class="cat-place">Cáceres</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Betinna & Sassy</div><div class="cat-place">Cantabria</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Ayelén, Eo & Ginebra</div><div class="cat-place">Valencia</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">John, Murfie & Gilbert</div><div class="cat-place">Valencia</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">María, Cendra & Van Gogh</div><div class="cat-place">Castellón</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Célia & Pulpo</div><div class="cat-place">Madrid</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Montse & Olaf</div><div class="cat-place">Madrid</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Nevena & Josefine</div><div class="cat-place">Gran Canaria</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Letizia & Iris</div><div class="cat-place">Tenerife</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Josefina & Rayas</div><div class="cat-place">Cataluña</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Anastasia & Osi</div><div class="cat-place">Barcelona</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Lina, Bagui & Fede</div><div class="cat-place">Barcelona</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Marco & Cheto</div><div class="cat-place">Barcelona</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Sylvia & Max</div><div class="cat-place">Córdoba</div></div></div>
+        <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-name">Ashley & Apollo</div><div class="cat-place">Orihuela</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BOTTOM -->
+<section class="cta-bottom">
+  <h2>Ready to meet your cat? 😸</h2>
+  <p>Because sometimes, healing doesn't need words — just whiskers.</p>
+  <a href="https://buy.stripe.com/cNi6oGfqL4SHdrg7w40Jq04" target="_blank" class="btn-book" style="background:var(--white);color:var(--dark)">🐾 Book Now — €8</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>PawVibesZ · Founded in Madrid 🇪🇸 by Iván Álvarez Paniagua · <a href="https://www.instagram.com/pawvibesz/" target="_blank">@pawvibesz</a> on Instagram</p>
+  <p style="margin-top:8px">The world's first virtual cat therapy platform 🐱</p>
+</footer>
+
+</body>
+</html>
